@@ -1,5 +1,5 @@
 import json
-from typing import Any, List
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -27,9 +27,7 @@ def health() -> dict:
     return health.dict()
 
 
-@api_router.post(
-    "/predict", response_model=schemas.PredictionResults, status_code=200
-)
+@api_router.post("/predict", response_model=schemas.PredictionResults, status_code=200)
 async def predict(input_data: schemas.MultipleSBAInputs) -> Any:
 
     input_df = pd.DataFrame(jsonable_encoder(input_data.inputs))
